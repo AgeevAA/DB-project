@@ -18,7 +18,7 @@ CREATE TABLE THEME (
 ) ;
 
 CREATE TABLE CLIENT_SOURCEGENRE (
-	client_id       INT NOT NULL,
+	client_id           INT NOT NULL,
 	sgenre_id  	    INT NOT NULL,
 	primary key (client_id, sgenre_id),
 	FOREIGN KEY (client_id) REFERENCES CLIENT(client_id),
