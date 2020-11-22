@@ -13,6 +13,14 @@ CREATE TABLE CLIENT_THEMES (
 	FOREIGN KEY (theme_id) REFERENCES THEME(theme_id)
 ) ;
 
+CREATE TABLE ARTICLE_THEMES (
+	article_id       INT NOT NULL,
+	theme_id        INT NOT NULL,
+	primary key (article_id, theme_id),
+	FOREIGN KEY (article_id) REFERENCES ARTICLES(article_id),
+	FOREIGN KEY (theme_id) REFERENCES THEME(theme_id)
+) ;
+
 CREATE TABLE THEME (
 	theme_id       INT PRIMARY KEY
 ) ;
@@ -22,10 +30,18 @@ CREATE TABLE CLIENT_SOURCEGENRE (
 	sgenre_id  	    INT NOT NULL,
 	primary key (client_id, sgenre_id),
 	FOREIGN KEY (client_id) REFERENCES CLIENT(client_id),
-	FOREIGN KEY (sgenre_id) REFERENCES SOURCEGENRE(sgenre_id)
+	FOREIGN KEY (sgenre_id) REFERENCES GENRE(sgenre_id)
 ) ;
 
-CREATE TABLE SOURCEGENRE (
+CREATE TABLE SOURCE_SOURCEGENRE (
+	source_id           INT NOT NULL,
+	sgenre_id  	    INT NOT NULL,
+	primary key (source_id, sgenre_id),
+	FOREIGN KEY (source_id) REFERENCES SOURCES(source_id),
+	FOREIGN KEY (sgenre_id) REFERENCES GENRE(sgenre_id)
+) ;
+
+CREATE TABLE GENRE (
 	sgenre_id  INT PRIMARY KEY
 ) ;
 
@@ -34,6 +50,22 @@ CREATE TABLE CLIENT_LANGUAGES (
 	lang_id        INT NOT NULL,
 	primary key (client_id, lang_id),
 	FOREIGN KEY (client_id) REFERENCES CLIENTS(client_id),
+	FOREIGN KEY (lang_id) REFERENCES LANGUAGES(lang_id)
+) ;
+
+CREATE TABLE SOURCES_LANGUAGES (
+	source_id      INT NOT NULL,
+	lang_id        INT NOT NULL,
+	primary key (source_id, lang_id),
+	FOREIGN KEY (source_id) REFERENCES SOURCES(source_id),
+	FOREIGN KEY (lang_id) REFERENCES LANGUAGES(lang_id)
+) ;
+
+CREATE TABLE ARTICLES_LANGUAGES (
+	article_id      INT NOT NULL,
+	lang_id        INT NOT NULL,
+	primary key (article_id, lang_id),
+	FOREIGN KEY (article_id) REFERENCES ARTICLES(article_id),
 	FOREIGN KEY (lang_id) REFERENCES LANGUAGES(lang_id)
 ) ;
 
@@ -50,7 +82,8 @@ CREATE TABLE CLIENT_WORDS (
 ) ;
 
 CREATE TABLE WORDS (
-	word_id		INT PRIMARY KEY
+	word_id		INT PRIMARY KEY,
+	body            VARCHAR(50)
 ) ;
 
 CREATE TABLE WORD_SENTENCES (
@@ -62,7 +95,8 @@ CREATE TABLE WORD_SENTENCES (
 ) ;
 
 CREATE TABLE SENTENCES (
-	sentence_id       INT PRIMARY KEY
+	sentence_id       INT PRIMARY KEY,
+	body              BLOB(100000)
 ) ;
 
 CREATE TABLE SENTENCES_ARTICLES (
@@ -74,16 +108,13 @@ CREATE TABLE SENTENCES_ARTICLES (
 ) ;
 
 CREATE TABLE SOURCES (
-	source_id      INT PRIMARY KEY,
-	genre          VARCHAR(30),
-	lang           VARCHAR(30)
+	source_id      INT PRIMARY KEY
 ) ;
 
 CREATE TABLE ARTICLES (
 	article_id     INT PRIMARY KEY,
-	article_url    VARCHAR(1000),
-	lang           VARCHAR(30),
-	theme          VARCHAR(30),
+	body           BLOB(100000),
+	article_url    VARCHAR(100),
 	published_year INT,
 	source_id      INT,
     FOREIGN KEY (source_id) REFERENCES SOURCES(source_id) 
