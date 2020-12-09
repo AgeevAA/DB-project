@@ -10,7 +10,6 @@ CREATE TABLE THEME (
 	body           VARCHAR(50)
 ) ;
 
-
 CREATE TABLE GENRE (
 	sgenre_id  INT PRIMARY KEY, 
 	body            VARCHAR(50)
