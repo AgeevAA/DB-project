@@ -4,21 +4,18 @@ CREATE TABLE CLIENT (
 ) ;
 
 CREATE TABLE THEME (
-	theme_id       INT NOT NULL AUTO_INCREMENT,
-	body           VARCHAR(50),
-	PRIMARY KEY(theme_id)
+	theme_id       INT PRIMARY KEY,
+	body           VARCHAR(50)
 ) ;
 
 CREATE TABLE GENRE (
-	sgenre_id  	INT NOT NULL AUTO_INCREMENT, 
-	body            VARCHAR(50),
-	PRIMARY KEY(GENRE)
+	sgenre_id  	INT PRIMARY KEY, 
+	body            VARCHAR(50)
 ) ;
 
 CREATE TABLE LANGUAGES (
-	lang_id  INT NOT NULL AUTO_INCREMENT,
-	body     VARCHAR(25),
-	PRIMARY KEY(lang_id)
+	lang_id  INT PRIMARY KEY,
+	body     VARCHAR(25)
 ) ;
 
 CREATE TABLE WORDS (
@@ -34,9 +31,8 @@ CREATE TABLE SENTENCES (
 ) ;
 
 CREATE TABLE SOURCES (
-	source_id      INT NOT NULL NOT NULL AUTO_INCREMENT,
-	body 	       VARCHAR(200),
-	PRIMARY KEY(source_id)
+	source_id      INT PRIMARY KEY,
+	body 	       VARCHAR(200)
 ) ;
 
 CREATE TABLE ARTICLES (
