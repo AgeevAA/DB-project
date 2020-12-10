@@ -16,7 +16,7 @@ CREATE TABLE GENRE (
 ) ;
 
 CREATE TABLE LANGUAGES (
-	lang_id  INT NOT NULL,
+	lang_id  INT NOT NULL AUTO_INCREMENT,
 	body     VARCHAR(25),
 	PRIMARY KEY(lang_id)
 ) ;
@@ -129,3 +129,6 @@ CREATE TABLE SENTENCES_ARTICLES (
 	FOREIGN KEY (sentence_id) REFERENCES SENTENCES(sentence_id),
 	FOREIGN KEY (article_id) REFERENCES ARTICLES(article_id)
 ) ;
+
+INSERT INTO WORDS(body) VALUES('demon');
+INSERT INTO SENTENCES(body) VALUES('He is truly a demon!');
