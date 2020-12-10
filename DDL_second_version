@@ -129,6 +129,3 @@ CREATE TABLE SENTENCES_ARTICLES (
 	FOREIGN KEY (sentence_id) REFERENCES SENTENCES(sentence_id),
 	FOREIGN KEY (article_id) REFERENCES ARTICLES(article_id)
 ) ;
-
-INSERT INTO WORDS(body) VALUES('demon');
-INSERT INTO SENTENCES(body) VALUES('He is truly a demon!');
